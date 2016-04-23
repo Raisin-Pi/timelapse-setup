@@ -1,9 +1,9 @@
 # Licence
 
-Unless otherwise specified, everything in this repository is covered by the following licence:
+Sauf si expressément spécifié, tout le contenu de ce répertoire est couvert sous la licence suivante :
 
-![Creative Commons License](http://i.creativecommons.org/l/by-sa/4.0/88x31.png)
+![Licence Creative Commons](http://i.creativecommons.org/l/by-sa/4.0/88x31.png)](http://creativecommons.org/licenses/by-sa/4.0/)
 
-***Time-lapse Setup*** by the [Raspberry Pi Foundation](http://raspberrypi.org) is licenced under a [Creative Commons Attribution 4.0 International License](http://creativecommons.org/licenses/by-sa/4.0/).
+***Time-lapse Setup*** de la [Fondation Raspberry Pi](http://raspberrypi.org) est licencié sous  [Licence Creative Commons Attribution 4.0 International](http://creativecommons.org/licenses/by-sa/4.0/).
 
-Based on a work at https://github.com/raspberrypilearning/timelapse-setup
+D'après le travail réalisé sous https://github.com/raspberrypilearning/timelapse-setup

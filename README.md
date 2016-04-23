@@ -1,7 +1,7 @@
-# Time-lapse Setup Using the Camera Module
+# Installation Time-lapse avec le Module Caméra
 
-How to set up a time-lapse with a Raspberry Pi using the camera module.
+Comment mettre en place un "time-lapse" avec un Raspberry Pi utilisant le module caméra.
 
-## Worksheet
+## Feuille d'activité
 
-- [Worksheet](worksheet.md)
+- [Feuille d'Activité](worksheet.md)
