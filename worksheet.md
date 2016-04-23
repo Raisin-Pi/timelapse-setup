@@ -1,32 +1,32 @@
-## Step 0: Camera setup
+## Étape 0: Installation Caméra
 
-Follow the [camera module setup guide](http://www.raspberrypi.org/help/camera-module-setup/).
+Suivre le [guide d'installation module caméra](http://www.raspberrypi.org/help/camera-module-setup/).
 
-## Step 1: Test the camera
+## Étape 1: Tester la camera
 
-With the camera module connected and enabled, enter the following command in the Terminal to take a picture:
+Avec la caméra branchée et activée, entrez la commande suivante dans le Terminal pour capturer une image :
 
 ```bash
 raspistill -o cam.jpg
 ```
 
-You should see a preview on screen as the picture is taken.
+Vous devriez avoir un aperçu à l'écran lors de la prise de photo.
 
-Now type `ls` and you should see a file called `cam.jpg`. Open your home folder in the file browser and view the image (right click and select `Open with image preview`). If there's a picture of what your camera was pointed at - then your camera works!
+Maintenant tapez `ls` et vous devriez voir un fichier nommé `cam.jpg`. Ouvrez votre répertoire personnel (*home*) dans l'explorateur de fichier et regarder l'image (clique droit et selectionner `Visionneur d'images`). S'il y a une photo de ce qui était devant votre caméra - elle marche correctement !
 
-If your picture was upside-down this is because your camera is pointed upside-down - that's ok - sometimes it's easier to have it that way up, and you can flip the image over.
+Si votre photo était à l'envers, ceci est parce que votre caméra était orientée à l'envers - mais pas de souci - parfois c'est plus facile de l'installer dans ce sens , et vous pouvez simplement inversé l'image.
 
-If you intend to have your camera positioned upside-down, pass in the `-hf` and `-vf` flags to horizontally and vertically flip the image (otherwise skip to Step 2):
+Si vous avez l'intention de positionner votre caméra à l'envers, faites passer les valeurs de configuration `-hf` et `-vf` pour inverser horizontalement et verticalement l'image (sinon avancez à l'Étape 2) :
 
 ```bash
 raspistill -hf -vf -o cam2.jpg
 ```
 
-Now check again, there should now be a `cam2.jpg` file. Open the image and check it's the right way up.
+Vérifiez de nouveau, il devrait avoir désormais un fichier nommé `cam2.jpg` dans le dossier. Ouvrez l'image pour vérifier que c'est à l'endroit.
 
-## Step 2: Write a script
+## Étape 2: Écrire un script
 
-Now we'll write a Bash script which will take a picture and save it with the date and time. It can be as simple as this:
+Ensuite nous allons écrire un script "Bash" qui va prendre une photo et l'enregistrer avec la date et l'heure. Ça peut être aussi simple que ce qui suit :
 
 ```bash
 #!/bin/bash
@@ -36,25 +36,25 @@ DATE=$(date +"%Y-%m-%d_%H%M")
 raspistill -o /home/pi/camera/$DATE.jpg
 ```
 
-Remember to use the `-vf` and `-hf` flags if your camera is pointed upside-down.
+Pensez à utiliser les "drapeaux" `-vf` et `-hf` si votre caméra est à l'envers.
 
-Create a new file called `camera.sh` by opening with a text editor, e.g. `nano camera.sh`, paste or otherwise enter the lines from above and save the file.
+Créez un nouveau fichier nommé `camera.sh` en ouvrant un editeur de texte, par exemple `nano camera.sh`, collez ou autrement entrez les lignes comme ci-dessus et enregistrez le fichier.
 
-Now make this file executable with the following command:
+Maintenant vous pouvez rendre le fichier "exécutable" avec la commande suivante :
 
 ```bash
 chmod +x camera.sh
 ```
 
-Running this script will save a picture with the timestamp as the filename in a folder called `camera` in your home directory. First we'll create this folder:
+Si on lance ce script, on va enregistrer une photo avec le tampon "date/heure" comme nom de fichier dans un répertoire qui s'appelle `camera` qui se trouve sous notre répertoire peronnel (*home*). Tout d'abord nous allons créer ce dossier :
 
 ```bash
 mkdir camera
 ```
 
-Make sure you're in the home directory when you do this. If you're not, or you're not sure, just type `cd` and hit `Enter` to return to your home directory.
+Véillez à être dans votre répertoire personnel quand vous lancer la commande. Si vous n'y êtes pas, ou vous n'êtes pas certain, tapez simplement `cd` et appuyer sur `Entrée` pour retourner sous votre répertoire personnel.
 
-You can use `pwd` (present working directory) to verify your location and `ls` to show the contents. After running `mkdir` you should see a new folder there.
+Vvous pouvez utiliser la commande `pwd` (*present working directory* - répertoire actif actuel) afin de vérifier votre position dans l'arborescence et `ls` to show the contents. After running `mkdir` you should see a new folder there.
 
 Before continuing, test the script works as intended by running it from the command line (first return to the home directory with `cd`):
 
@@ -66,7 +66,7 @@ You should see the preview again as the picture is taken. Now use `ls camera` to
 
 Open the file browser and preview the image to see the picture itself. If you're happy this worked as intended, and the date and time were given in the filename, continue to automation.
 
-## Step 3: Schedule taking pictures
+## Étape 3: Schedule taking pictures
 
 Now you have a Bash script which takes pictures and timestamps them, you can schedule the script to be run at an interval, say every minute.
 
@@ -124,7 +124,7 @@ and use `ls` to see the contents of the folder. Enter `date` to see how close yo
 
 Use `watch ls` to see changes to the contents of the folder. `watch` runs the command runs every 2 seconds (by default).
 
-## Step 4: Patience
+## Étape 4: Patience
 
 If you see pictures landing in the `camera` folder every minute, and you're happy with the orientation of the pictures, now position the camera wherever you want it to point at.
 
@@ -160,7 +160,7 @@ Set up an [FTP](http://www.raspberrypi.org/documentation/remote-access/ftp.md) s
 
 If you're using Linux on another computer you can transfer the files directly from the SD card, as it can mount the filesystem partition.
 
-## Step 5: Turn stills in to a video
+## Étape 5: Turn stills in to a video
 
 Now you'll need to stitch the photos together in to a video to achieve the time-lapse effect.
 
