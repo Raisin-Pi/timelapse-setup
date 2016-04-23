@@ -1,1 +1,1 @@
-How to set up a time-lapse with a Raspberry Pi using the camera module.
+Comment mettre en place un "time-lapse" avec un Raspberry Pi utilisant le module caméra.
