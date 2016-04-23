@@ -2,7 +2,7 @@
 
 Suivre le [guide d'installation module caméra](http://www.raspberrypi.org/help/camera-module-setup/).
 
-## Étape 1: Tester la camera
+## Étape 1: Tester la caméra
 
 Avec la caméra branchée et activée, entrez la commande suivante dans le Terminal pour capturer une image :
 
@@ -14,7 +14,7 @@ Vous devriez avoir un aperçu à l'écran lors de la prise de photo.
 
 Maintenant tapez `ls` et vous devriez voir un fichier nommé `cam.jpg`. Ouvrez votre répertoire personnel (*home*) dans l'explorateur de fichier et regarder l'image (clique droit et selectionner `Visionneur d'images`). S'il y a une photo de ce qui était devant votre caméra - elle marche correctement !
 
-Si votre photo était à l'envers, ceci est parce que votre caméra était orientée à l'envers - mais pas de souci - parfois c'est plus facile de l'installer dans ce sens , et vous pouvez simplement inversé l'image.
+Si votre photo est à l'envers, ceci est parce que votre caméra était orientée à l'envers - mais pas de souci - parfois c'est plus facile de l'installer dans ce sens , et vous pouvez simplement inversé l'image.
 
 Si vous avez l'intention de positionner votre caméra à l'envers, faites passer les valeurs de configuration `-hf` et `-vf` pour inverser horizontalement et verticalement l'image (sinon avancez à l'Étape 2) :
 
@@ -52,33 +52,33 @@ Si on lance ce script, on va enregistrer une photo avec le tampon "date/heure" c
 mkdir camera
 ```
 
-Véillez à être dans votre répertoire personnel quand vous lancer la commande. Si vous n'y êtes pas, ou vous n'êtes pas certain, tapez simplement `cd` et appuyer sur `Entrée` pour retourner sous votre répertoire personnel.
+Veillez à être situé dans votre répertoire personnel quand vous lancer la commande. Si vous n'y êtes pas, ou vous n'êtes pas certain, tapez simplement `cd` et appuyer sur `Entrée` pour retourner sous votre répertoire personnel.
 
-Vvous pouvez utiliser la commande `pwd` (*present working directory* - répertoire actif actuel) afin de vérifier votre position dans l'arborescence et `ls` to show the contents. After running `mkdir` you should see a new folder there.
+Vous pouvez utiliser la commande `pwd` (*present working directory* - répertoire actif actuel) afin de vérifier votre position dans l'arborescence et `ls` pour montrer le contenu. Après avoir lancé la commande `mkdir` vous devriez voir un nouveau dossier y apparaître.
 
-Before continuing, test the script works as intended by running it from the command line (first return to the home directory with `cd`):
+Avant de continuer, testez le bon fonctionnement du script en le lançant à partir de la ligne de commande (d'abord il faudrait retourner au répertoire personnel avec la commande `cd`) :
 
 ```bash
 ./camera.sh
 ```
 
-You should see the preview again as the picture is taken. Now use `ls camera` to look inside the `camera` folder to see the picture you just captured on disk.
+Vous devriez voir de nouveau un aperçu pendant la prise de photo. Puis utilisez `ls camera` pour regarder à l'intérieur du dossier `camera` et voir la photo que vous venez de prendre stockée sur le disque.
 
-Open the file browser and preview the image to see the picture itself. If you're happy this worked as intended, and the date and time were given in the filename, continue to automation.
+Ouvrez l'explorateur de fichier et prévisualisez pour voir la nouvelle photo. Si vous êtes satisfait du résultat, et que la date et heure sont bien présentes dans le nom du fichier, continuez à l'automatisation.
 
-## Étape 3: Schedule taking pictures
+## Étape 3: Planifier la prise de photos
 
-Now you have a Bash script which takes pictures and timestamps them, you can schedule the script to be run at an interval, say every minute.
+Puisque vous avez, d'ores et déjà, un script "Bash" qui prend des photos et les nomme avec un tampon date-heure, vous pouvez programmer le script pour s'exécuter périodiquement, par exemple, toutes les minutes.
 
-To do this we'll use `cron`. First open the cron table for editing:
+Pour le réaliser nous allons utiliser `cron`. Tout d'abord, il faudrait ouvrir la table "cron" pour la modifier :
 
 ```bash
 sudo crontab -e
 ```
 
-If you've not run `crontab` before you'll be prompted to select an editor - if you don't know the difference, choose `nano` by hitting `Enter`.
+Si vous n'avez jamais exécuté `crontab` auparavant vous serez invité de choisir un editeur de texte - si vous n'avez pas de préférence, choisissez `nano` en appuyant sur `Entrée`.
 
-Now you'll see the `cron` file, scroll to the bottom where you'll see a line with the following column headers:
+Maintenant vous voyez le fichier `cron`, faites défiler jusqu'en bas où vous trouverez une ligne avec les en-têtes suivants :
 
 ```bash
 # m h  dom mon dow   command
@@ -100,27 +100,27 @@ Minute, Hour, Day of Month, Month of Year, Day of Week and the command to be exe
 # └───────────────────────── min (0 - 59)
 ```
 
-To schedule for the `camera.sh` script to be executed every minute, add the following line:
+Pour programmer toutes les minutes l'exécution du script `camera.sh`, ajoutez la ligne suivante :
 
 ```bash
 * * * * * /home/pi/camera.sh 2>&1
 ```
 
-Now save and exit. If you're using `nano` as your editor, that's `Ctrl + O` to save and `Ctrl + X` to exit.
+Puis enregistrer et quitter le fichier. Si vous utilisez `nano` comme editeur, c'est `Ctrl + O` pour enregistrer et `Ctrl + X` pour quitter.
 
-You should see the following message:
+Vous devez voir le message suivant :
 
 ```bash
 crontab: installing new crontab
 ```
 
-Now return to the camera directory to see the photos start to appear:
+Maintenant vous pouvez retourner au dossier de la caméra pour voir des images qui commencent à apparaître :
 
 ```bash
 cd ~/camera/
 ```
 
-and use `ls` to see the contents of the folder. Enter `date` to see how close you are to the minute (`00` seconds) as a new picture should be captured at this precise time.
+et utilisez `ls` pour voir le contenu du dossier. Entrez `date` pour voir to see how close you are to the minute (`00` seconds) as a new picture should be captured at this precise time.
 
 Use `watch ls` to see changes to the contents of the folder. `watch` runs the command runs every 2 seconds (by default).
 
@@ -172,28 +172,28 @@ Navigate to the folder containing all your images and list the file names in to 
 ls *.jpg > stills.txt
 ```
 
-### On Raspberry Pi or other Linux computer
+### Sur le Raspberry Pi ou un autre système Linux
 
-Install the package mencoder:
+Installez le *package* "mencoder" :
 
 ```bash
 sudo apt-get install mencoder
 ```
 
-Now run the following command:
+Maintenant lancez la commande suivante :
 
 ```bash
 mencoder -nosound -ovc lavc -lavcopts vcodec=mpeg4:aspect=16/9:vbitrate=8000000 -vf scale=1920:1080 -o timelapse.avi -mf type=jpeg:fps=24 mf://@stills.txt
 ```
 
-This will save a video called `timelapse.avi`
+Une vidéo sera enregistrée sous le nom `timelapse.avi`
 
 ## Licence
 
-Unless otherwise specified, everything in this repository is covered by the following licence:
+Sauf si expressément spécifié, tout le contenu de ce répertoire est couvert sous la licence suivante :
 
-![Creative Commons License](http://i.creativecommons.org/l/by-sa/4.0/88x31.png)
+![Licence Creative Commons](http://i.creativecommons.org/l/by-sa/4.0/88x31.png)
 
-***Time-lapse Setup*** by the [Raspberry Pi Foundation](http://raspberrypi.org) is licenced under a [Creative Commons Attribution 4.0 International License](http://creativecommons.org/licenses/by-sa/4.0/).
+***Time-lapse Setup*** de la [Fondation Raspberry Pi](http://raspberrypi.org) est licencié sous  [Licence Creative Commons Attribution 4.0 International](http://creativecommons.org/licenses/by-sa/4.0/).
 
-Based on a work at https://github.com/raspberrypilearning/timelapse-setup
+D'après le travail réalisé sous https://github.com/raspberrypilearning/timelapse-setup
