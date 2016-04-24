@@ -120,53 +120,53 @@ Maintenant vous pouvez retourner au dossier de la caméra pour voir des images q
 cd ~/camera/
 ```
 
-et utilisez `ls` pour voir le contenu du dossier. Entrez `date` pour voir to see how close you are to the minute (`00` seconds) as a new picture should be captured at this precise time.
+et utilisez `ls` pour voir le contenu du dossier. Entrez `date` pour voir l'heure précise et si vous ête près du changement de minutes (`00` secondes) car c'est à ce moment-là qu'une nouvelle image sera prise.
 
-Use `watch ls` to see changes to the contents of the folder. `watch` runs the command runs every 2 seconds (by default).
+Utilisez `watch ls` pour surveiller les changements du contenu du répertoire. `watch` exécute la commande toutes les 2 secondes (par défaut).
 
 ## Étape 4: Patience
 
-If you see pictures landing in the `camera` folder every minute, and you're happy with the orientation of the pictures, now position the camera wherever you want it to point at.
+Si vous constatez qu'une nouvelle image arrive dans le dossier toutes les minutes, et vous êtes content par rapport à l'orientation des images, positionnez définitivement votre caméra dans la direction désirée.
 
-Perhaps use a camera mount or simply tape the Pi to a wall or object and position the camera with tape. Make sure the camera position is static and will remain in place over time.
+Vous pouvez utiliser un pied ou tout simplement scotcher le Pi au mur ou à un objet et positionner la caméra à l'aide de ruban adhésif. Vérifiez que la position de la caméra est statique et en restera dans la durée.
 
-You can shut down the Pi, remove it from the monitor and ethernet and simply have it running on power (when you plug it in, it will boot as normal and `cron` will run as expected) in the position you require.
+Vous pouvez éteindre le Pi, enlever l'écran et le câble ethernet et puis le remettre en marche uniquement avec l'alimentation (quand vous la branchez, le Pi demarrera normalement et `cron` s'exécutera comme prévu) à l'emplacement requis.
 
-You can even use a battery pack if you have one that lasts long enough for your requirements. This is especially handy if you need to position the power out of reach of a power socket, such as on a roof or in a tree!
+Vous pouvez même vous servir d'un bloc de batterie si vous en avez avec suffissament d'autonomie pour répondre à vos besoins. Ceci est particulièrement utile si vous devez placer l'ensemble loin d'une prise eléctrique, comme par exemple sur un toit ou dans un arbre !
 
-### Copying pictures remotely
+### Copier des images à distance
 
-If you have network connection with the Pi (wired or wireless) or your monitor is still attached, you can check the progress of the photos.
+Si vous avez une connexion réseau avec le Pi (avec ou sans fil) ou si votre écran est toujours branché, vous pouvez vérifier l'avancement des photos.
 
-If your monitor is attached, you can use `ls`, `watch ls` and even the file browser to see photos as they are captured, otherwise you can remotely access your Pi from another computer to copy the files to your computer. Here are some options, which you can read about in our documentation:
+Si votre écran est branché, vous pouvez utiliser `ls`, `watch ls` et même l'explorateur de fichiers pour observer les photos au fer et à mesure qu'elles arrivent, sinon vous pouvez accéder à votre Pi à distance d'un autre ordinateur afin de copier les fichiers sur un autre machine. Voici quelques options, que vous pouvez trouver et lire dans notre documentation :
 
 #### SSH
 
-You can gain remote access to the command line using [SSH](http://www.raspberrypi.org/documentation/remote-access/ssh/README.md) use `ls` and `watch ls` to verify the pictures are being captured.
+Vous pouvez accéder à distance à votre Pi en ligne de commande via [SSH](http://www.raspberrypi.org/documentation/remote-access/ssh/README.md) - utilisez `ls` et `watch ls` pour vérifier l'enregristrement des images capturées.
 
 #### SCP
 
-Use [SCP](http://www.raspberrypi.org/documentation/remote-access/ssh/scp.md) (Secure copy) to copy files over SSH.
+Utilisez [SCP](http://www.raspberrypi.org/documentation/remote-access/ssh/scp.md) (Copie sécurisée) pour copier des fichiers via SSH.
 
 #### rsync
 
-Use [rsync](http://www.raspberrypi.org/documentation/remote-access/ssh/rsync.md) to syncronise a folder on the Pi with a folder on your computer.
+Utilisez [rsync](http://www.raspberrypi.org/documentation/remote-access/ssh/rsync.md) pour synchroniser un dossier sur le Pi avec un dossier sur votre ordinateur.
 
 #### FTP
 
-Set up an [FTP](http://www.raspberrypi.org/documentation/remote-access/ftp.md) server on the Pi and use an FTP client on another computer to access the Pi's filesystem remotely, and copy files over.
+Mettez en place un serveur [FTP](http://www.raspberrypi.org/documentation/remote-access/ftp.md) sur le Pi et utilisez un client FTP sur un autre ordinateur afin d'accéder à distance au système des fichiers du Pi, et transférer des fichiers.
 
-#### SD Card
+#### Carte SD
 
-If you're using Linux on another computer you can transfer the files directly from the SD card, as it can mount the filesystem partition.
+Si vous vous en servez du système d'exploitation GNU/Linux sur un autre ordinateur vous pouvez transférer des fichiers directement de la carte SD, car l'ordinateur pourrait monter la partition du système des fichiers.
 
-## Étape 5: Turn stills in to a video
+## Étape 5: Transformer des images instantanées en vidéo
 
-Now you'll need to stitch the photos together in to a video to achieve the time-lapse effect.
+Maintenant vous aurez besoin de assembler les photos en vidéo afin d'obtenir un effet de time-lapse.
 
-You can do this on the Pi using `mencoder` but the processing will be slow. You may prefer to transfer the image files to your desktop computer or laptop and processing the video there.
+Vous pouvez faire cela sur le Pi via `mencoder`. Cependant le traitement sera lent. Peut-être ce serait préférable de transférer les fichiers d'image sur votre ordinateur de bureau ou un portable et procéder au traitement vidéo sur cette machine-là.
 
-Navigate to the folder containing all your images and list the file names in to a text file. For example:
+Naviguez vers le dossier qui contient l'ensemble de vos images et créez une liste des noms des images dans un fichier texte. Par exemple :
 
 ```bash
 ls *.jpg > stills.txt
